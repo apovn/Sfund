@@ -6,10 +6,10 @@ pipeline {
         echo 'Placeholder.'
       }
     }
-  }
-  stage('Build') {
+    stage('Build') {
       steps {
           sh 'mvn -DskipTests clean install'
       }
+    }
   }
 }
