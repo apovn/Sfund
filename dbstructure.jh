@@ -1,0 +1,46 @@
+entity Reason {
+	id Long,
+    created Instant,
+    name String required,
+    description TextBlob,
+    info TextBlob
+}
+
+entity Member {
+    id Long,
+    created Instant,
+    name String required,
+    description TextBlob,    
+    birthday LocalDate,
+    phone Long,
+    currentAmount Long,
+    totalAmount Long,
+    info TextBlob
+}
+
+entity Payment {
+	id Long,
+    created Instant,
+    amount Long,
+    status PayStatusEnum,
+    payDate Instant,
+    info TextBlob
+}
+
+enum PayStatusEnum {
+    PAID, UNPAID
+}
+
+relationship OneToMany {
+    Member to Payment
+}
+
+relationship ManyToMany {
+    Payment to Reason
+}
+
+dto * with mapstruct
+service * with serviceClass
+
+paginate Payment with pagination
+paginate Reason, Member with infinite-scroll

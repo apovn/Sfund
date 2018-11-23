@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "Sfund",
+    "packageName": "niteco.splus",
+    "packageFolder": "niteco/splus",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.7.0",
+    "jwtSecretKey": "MmI4MTIyMjYyMzc1NzdlMDBiYzExZTYxMWQzZTM2YThjYzk0YjNhODI4Y2ZjYWZjNzI1OWVkNjc4YzJjZGQ5YWU4ZTRhMTFjYzMzOTFhNmU2MTgyNTZkZTJjZDc3NzVlNzUyNzAyMmZjZDE4OTY5YjI1MDBhNzY5MWJjYmU0ZTA=",
+    "otherModules": []
+  }
+}

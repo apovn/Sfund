@@ -1,0 +1,52 @@
+{
+    "name": "Payment",
+    "fields": [
+        {
+            "fieldName": "created",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "PayStatusEnum",
+            "fieldValues": "PAID,UNPAID"
+        },
+        {
+            "fieldName": "payDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "info",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "payment",
+            "relationshipName": "reason",
+            "otherEntityName": "reason",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "member",
+            "otherEntityName": "member",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181120031412",
+    "entityTableName": "payment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
