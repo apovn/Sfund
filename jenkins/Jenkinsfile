@@ -11,7 +11,7 @@ pipeline {
           // sh 'mvn -DskipTests clean install'
       }
     }
-    stage('Build') {
+    stage('Deliver') {
       steps {
           sh './jenkins/scripts/deliver.sh'
       }
