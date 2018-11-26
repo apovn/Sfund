@@ -6,16 +6,10 @@ pipeline {
         echo 'Placeholder.'
       }
     }
-    stage('Build') {
-      steps {
-          // sh 'mvn -DskipTests clean install'
-      }
-    }
     stage('Deliver') {
       steps {
           sh './jenkins/scripts/deliver.sh'
       }
-    }
-    
+    }    
   }
 }
