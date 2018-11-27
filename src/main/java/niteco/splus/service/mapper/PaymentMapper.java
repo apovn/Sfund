@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface PaymentMapper extends EntityMapper<PaymentDTO, Payment> {
 
     @Mapping(source = "member.id", target = "memberId")
+    @Mapping(source = "member.name", target = "memberName")
     PaymentDTO toDto(Payment payment);
 
     @Mapping(source = "memberId", target = "member")

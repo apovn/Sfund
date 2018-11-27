@@ -90,7 +90,7 @@ public class PaymentResource {
      */
     @GetMapping("/payments")
     @Timed
-    public ResponseEntity<List<PaymentDTO>> getAllPayments(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public ResponseEntity<List<PaymentDTO>> getAllPayments(Pageable pageable, @RequestParam(required = false, defaultValue = "true") boolean eagerload) {
         log.debug("REST request to get a page of Payments");
         Page<PaymentDTO> page;
         if (eagerload) {

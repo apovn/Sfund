@@ -14,21 +14,17 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="created"><span>Created</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>            
             <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="info"><span>Info</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>            
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let reason of reasons ;trackBy: trackId">
-                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>
-                <td>{{reason.created | date:'medium'}}</td>
+                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>                
                 <td>{{reason.name}}</td>
-                <td>{{reason.description}}</td>
-                <td>{{reason.info}}</td>
+                <td>{{reason.description}}</td>                
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

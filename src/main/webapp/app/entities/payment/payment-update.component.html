@@ -10,48 +10,28 @@
                         [(ngModel)]="payment.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_created">Created</label>
-                    <div class="d-flex">
-                        <input id="field_created" type="datetime-local" class="form-control" name="created" [(ngModel)]="created"
-                        />
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" for="field_amount">Amount</label>
                     <input type="number" class="form-control" name="amount" id="field_amount"
                         [(ngModel)]="payment.amount" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_status">Status</label>
-                    <select class="form-control" name="status" [(ngModel)]="payment.status" id="field_status" >
-                        <option value="PAID">PAID</option>
-                        <option value="UNPAID">UNPAID</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_payDate">Pay Date</label>
-                    <div class="d-flex">
-                        <input id="field_payDate" type="datetime-local" class="form-control" name="payDate" [(ngModel)]="payDate"
-                        />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_info">Info</label>
-                    <textarea class="form-control" name="info" id="field_info"
-                        [(ngModel)]="payment.info" ></textarea>
-                </div>
-
-                <div class="form-group">
                     <label for="field_reason">Reason</label>
                     <select class="form-control" id="field_reason" multiple name="reason" [(ngModel)]="payment.reasons">
-                        <option [ngValue]="getSelected(payment.reasons, reasonOption)" *ngFor="let reasonOption of reasons; trackBy: trackReasonById">{{reasonOption.id}}</option>
+                        <option [ngValue]="getSelected(payment.reasons, reasonOption)" *ngFor="let reasonOption of reasons; trackBy: trackReasonById">{{reasonOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_member">Member</label>
                     <select class="form-control" id="field_member" name="member" [(ngModel)]="payment.memberId" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="memberOption.id" *ngFor="let memberOption of members; trackBy: trackMemberById">{{memberOption.id}}</option>
+                        <option [ngValue]="memberOption.id" *ngFor="let memberOption of members; trackBy: trackMemberById">{{memberOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <select class="form-control" name="status" [(ngModel)]="payment.status" id="field_status" >
+                        <option value="UNPAID">UNPAID</option>
+                        <option value="PAID">PAID</option>
                     </select>
                 </div>
             </div>

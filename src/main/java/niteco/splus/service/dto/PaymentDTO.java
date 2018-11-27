@@ -30,6 +30,8 @@ public class PaymentDTO implements Serializable {
 
     private Long memberId;
 
+    private String memberName;
+
     public Long getId() {
         return id;
     }
@@ -92,6 +94,14 @@ public class PaymentDTO implements Serializable {
 
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 
     @Override

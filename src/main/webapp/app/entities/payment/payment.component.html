@@ -15,28 +15,24 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="created"><span>Created</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="amount"><span>Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="memberName"><span>Member</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="status"><span>Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="payDate"><span>Pay Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="info"><span>Info</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="memberId"><span>Member</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let payment of payments ;trackBy: trackId">
                 <td><a [routerLink]="['/payment', payment.id, 'view' ]">{{payment.id}}</a></td>
-                <td>{{payment.created | date:'medium'}}</td>
                 <td>{{payment.amount}}</td>
-                <td>{{payment.status}}</td>
-                <td>{{payment.payDate | date:'medium'}}</td>
-                <td>{{payment.info}}</td>
                 <td>
                     <div *ngIf="payment.memberId">
-                        <a [routerLink]="['../member', payment.memberId , 'view' ]" >{{payment.memberId}}</a>
+                        <a [routerLink]="['../member', payment.memberId , 'view' ]" >{{payment.memberName}}</a>
                     </div>
                 </td>
+                <td>{{payment.status}}</td>
+                <td>{{payment.payDate | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

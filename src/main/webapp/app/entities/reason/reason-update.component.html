@@ -10,13 +10,6 @@
                         [(ngModel)]="reason.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_created">Created</label>
-                    <div class="d-flex">
-                        <input id="field_created" type="datetime-local" class="form-control" name="created" [(ngModel)]="created"
-                        />
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                         [(ngModel)]="reason.name" required/>
@@ -32,12 +25,6 @@
                     <textarea class="form-control" name="description" id="field_description"
                         [(ngModel)]="reason.description" ></textarea>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_info">Info</label>
-                    <textarea class="form-control" name="info" id="field_info"
-                        [(ngModel)]="reason.info" ></textarea>
-                </div>
-
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

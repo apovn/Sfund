@@ -1,6 +1,7 @@
 package niteco.splus.service;
 
 import niteco.splus.domain.Payment;
+import niteco.splus.domain.enumeration.PayStatusEnum;
 import niteco.splus.repository.PaymentRepository;
 import niteco.splus.service.dto.PaymentDTO;
 import niteco.splus.service.mapper.PaymentMapper;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -42,6 +44,17 @@ public class PaymentService {
         log.debug("Request to save Payment : {}", paymentDTO);
 
         Payment payment = paymentMapper.toEntity(paymentDTO);
+        payment.setCreated(Instant.now());
+
+        if (payment.getId() == null && payment.getStatus().equals(PayStatusEnum.PAID)) {
+            payment.setPayDate(Instant.now());
+        } else if (payment.getId() != null) {
+            Payment pay = paymentRepository.getOne(payment.getId());
+            if (pay.getStatus().equals(PayStatusEnum.UNPAID) && payment.getStatus().equals(PayStatusEnum.PAID)) {
+                payment.setPayDate(Instant.now());
+            }
+        }
+
         payment = paymentRepository.save(payment);
         return paymentMapper.toDto(payment);
     }

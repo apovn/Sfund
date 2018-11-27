@@ -15,28 +15,25 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="created"><span>Created</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="birthday"><span>Birthday</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="phone"><span>Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="currentAmount"><span>Current Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="totalAmount"><span>Total Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="info"><span>Info</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <!--<th jhiSortBy="currentAmount"><span>Current Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <th jhiSortBy="totalAmount"><span>Total Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>            
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let member of members ;trackBy: trackId">
                 <td><a [routerLink]="['/member', member.id, 'view' ]">{{member.id}}</a></td>
-                <td>{{member.created | date:'medium'}}</td>
+                
                 <td>{{member.name}}</td>
                 <td>{{member.description}}</td>
-                <td>{{member.birthday | date:'mediumDate'}}</td>
+                <td>{{member.birthday | date:'fullDate'}}</td>
                 <td>{{member.phone}}</td>
-                <td>{{member.currentAmount}}</td>
-                <td>{{member.totalAmount}}</td>
-                <td>{{member.info}}</td>
+                <!--<td>{{member.currentAmount}}</td>-->
+                <td>{{member.totalAmount}}</td>                
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

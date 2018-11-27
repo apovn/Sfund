@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -42,6 +43,7 @@ public class ReasonService {
         log.debug("Request to save Reason : {}", reasonDTO);
 
         Reason reason = reasonMapper.toEntity(reasonDTO);
+        reason.setCreated(Instant.now());
         reason = reasonRepository.save(reason);
         return reasonMapper.toDto(reason);
     }

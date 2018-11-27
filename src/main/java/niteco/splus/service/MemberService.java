@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -42,6 +43,7 @@ public class MemberService {
         log.debug("Request to save Member : {}", memberDTO);
 
         Member member = memberMapper.toEntity(memberDTO);
+        member.setCreated(Instant.now());
         member = memberRepository.save(member);
         return memberMapper.toDto(member);
     }
