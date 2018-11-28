@@ -21,10 +21,10 @@
                 <dd>
                     <span>{{payment.payDate | date:'medium'}}</span>
                 </dd>
-                <dt><span>Info</span></dt>
-                <dd>
-                    <span>{{payment.info}}</span>
-                </dd>
+                <!--<dt><span>Info</span></dt>-->
+                <!--<dd>-->
+                    <!--<span>{{payment.info}}</span>-->
+                <!--</dd>-->
                 <dt><span>Reason</span></dt>
                 <dd>
                     <span *ngFor="let reason of payment.reasons; let last = last">
@@ -39,11 +39,11 @@
                 </dd>
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
+            <!--<button type="submit"-->
+                    <!--(click)="previousState()"-->
+                    <!--class="btn btn-info">-->
+                <!--<fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>-->
+            <!--</button>-->
 
             <button type="button"
                     [routerLink]="['/payment', payment.id, 'edit']"

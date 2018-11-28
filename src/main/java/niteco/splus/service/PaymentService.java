@@ -1,10 +1,15 @@
 package niteco.splus.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import niteco.splus.domain.Member;
 import niteco.splus.domain.Payment;
 import niteco.splus.domain.enumeration.PayStatusEnum;
+import niteco.splus.repository.MemberRepository;
 import niteco.splus.repository.PaymentRepository;
 import niteco.splus.service.dto.PaymentDTO;
 import niteco.splus.service.mapper.PaymentMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -27,11 +34,14 @@ public class PaymentService {
 
     private final PaymentRepository paymentRepository;
 
+    private final MemberRepository memberRepository;
+
     private final PaymentMapper paymentMapper;
 
-    public PaymentService(PaymentRepository paymentRepository, PaymentMapper paymentMapper) {
+    public PaymentService(PaymentRepository paymentRepository, PaymentMapper paymentMapper, MemberRepository memberRepository) {
         this.paymentRepository = paymentRepository;
         this.paymentMapper = paymentMapper;
+        this.memberRepository = memberRepository;
     }
 
     /**
@@ -46,6 +56,7 @@ public class PaymentService {
         Payment payment = paymentMapper.toEntity(paymentDTO);
         payment.setCreated(Instant.now());
 
+        // time of payment
         if (payment.getId() == null && payment.getStatus().equals(PayStatusEnum.PAID)) {
             payment.setPayDate(Instant.now());
         } else if (payment.getId() != null) {
@@ -53,6 +64,25 @@ public class PaymentService {
             if (pay.getStatus().equals(PayStatusEnum.UNPAID) && payment.getStatus().equals(PayStatusEnum.PAID)) {
                 payment.setPayDate(Instant.now());
             }
+        }
+
+        // calculate total amount of a Member
+        if (StringUtils.isBlank(payment.getInfo()) && payment.getStatus().equals(PayStatusEnum.PAID)) {
+            Member m = memberRepository.getOne(payment.getMember().getId());
+            if (m.getTotalAmount() == null && m.getCurrentAmount() == null) {
+                m.setTotalAmount(payment.getAmount());
+            } else if (m.getTotalAmount() == null && m.getCurrentAmount() >= 0) {
+                m.setTotalAmount(m.getCurrentAmount() + payment.getAmount());
+            } else if (m.getTotalAmount() > 0) {
+                m.setTotalAmount(m.getTotalAmount() + payment.getAmount());
+            }
+
+            memberRepository.save(m);
+
+            Map<String, Object> msgMap = new HashMap<>();
+            msgMap.put("payCount", "1");
+            Gson gson = new GsonBuilder().create();
+            payment.setInfo(gson.toJson(msgMap));
         }
 
         payment = paymentRepository.save(payment);

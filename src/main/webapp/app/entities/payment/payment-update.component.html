@@ -22,17 +22,29 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_member">Member</label>
-                    <select class="form-control" id="field_member" name="member" [(ngModel)]="payment.memberId" >
+                    <select class="form-control" id="field_member" name="member" [(ngModel)]="payment.memberId" required>
                         <option [ngValue]="null"></option>
                         <option [ngValue]="memberOption.id" *ngFor="let memberOption of members; trackBy: trackMemberById">{{memberOption.name}}</option>
                     </select>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.name?.errors?.required">
+                            This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_status">Status</label>
-                    <select class="form-control" name="status" [(ngModel)]="payment.status" id="field_status" >
+                    <select class="form-control" name="status" [(ngModel)]="payment.status" id="field_status" required>
                         <option value="UNPAID">UNPAID</option>
                         <option value="PAID">PAID</option>
                     </select>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.name?.errors?.required">
+                            This field is required.
+                        </small>
+                    </div>
                 </div>
             </div>
             <div>
