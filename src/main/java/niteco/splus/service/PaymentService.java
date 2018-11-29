@@ -132,6 +132,19 @@ public class PaymentService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Payment : {}", id);
+
+        Payment deletedPayment = paymentRepository.getOne(id);
+
+        if (deletedPayment.getStatus().equals(PayStatusEnum.PAID)) {
+            Long amount = deletedPayment.getAmount();
+            Member m = memberRepository.getOne(deletedPayment.getMember().getId());
+            if (m.getTotalAmount() > 0) {
+                m.setTotalAmount(m.getTotalAmount() - amount);
+            }
+
+            memberRepository.save(m);
+        }
+
         paymentRepository.deleteById(id);
     }
 }
