@@ -45,6 +45,10 @@ public class Payment implements Serializable {
     @Column(name = "info")
     private String info;
 
+    @Lob
+    @Column(name = "description")
+    private String description;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "payment_reason",
@@ -130,6 +134,19 @@ public class Payment implements Serializable {
         this.info = info;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public Payment description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Set<Reason> getReasons() {
         return reasons;
     }
@@ -198,6 +215,7 @@ public class Payment implements Serializable {
             ", status='" + getStatus() + "'" +
             ", payDate='" + getPayDate() + "'" +
             ", info='" + getInfo() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

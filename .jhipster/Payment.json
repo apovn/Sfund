@@ -1,5 +1,22 @@
 {
-    "name": "Payment",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "payment",
+            "relationshipName": "reason",
+            "otherEntityName": "reason",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "member",
+            "otherEntityName": "member",
+            "otherEntityField": "id"
+        }
+    ],
     "fields": [
         {
             "fieldName": "created",
@@ -22,31 +39,18 @@
             "fieldName": "info",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "payment",
-            "relationshipName": "reason",
-            "otherEntityName": "reason",
-            "otherEntityField": "id",
-            "ownerSide": true
         },
         {
-            "relationshipType": "many-to-one",
-            "relationshipName": "member",
-            "otherEntityName": "member",
-            "otherEntityField": "id"
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
         }
     ],
     "changelogDate": "20181120031412",
-    "entityTableName": "payment",
     "dto": "mapstruct",
-    "pagination": "pagination",
+    "searchEngine": false,
     "service": "serviceClass",
+    "entityTableName": "payment",
     "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+    "pagination": "pagination"
 }

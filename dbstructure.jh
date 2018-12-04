@@ -24,6 +24,7 @@ entity Payment {
     amount Long,
     status PayStatusEnum,
     payDate Instant,
+    description TextBlob,
     info TextBlob
 }
 

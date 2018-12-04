@@ -11,7 +11,7 @@
                 </dd>
                 <dt><span>Amount</span></dt>
                 <dd>
-                    <span>{{payment.amount}}</span>
+                    <span>{{payment.amount | number}}</span>
                 </dd>
                 <dt><span>Status</span></dt>
                 <dd>
@@ -25,6 +25,10 @@
                 <!--<dd>-->
                     <!--<span>{{payment.info}}</span>-->
                 <!--</dd>-->
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{payment.description}}</span>
+                </dd>
                 <dt><span>Reason</span></dt>
                 <dd>
                     <span *ngFor="let reason of payment.reasons; let last = last">

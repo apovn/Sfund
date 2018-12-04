@@ -19,13 +19,14 @@
             <th jhiSortBy="member"><span>Member</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="status"><span>Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="payDate"><span>Pay Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let payment of payments ;trackBy: trackId">
                 <td><a [routerLink]="['/payment', payment.id, 'view' ]">{{payment.id}}</a></td>
-                <td>{{payment.amount}}</td>
+                <td>{{payment.amount | number}}</td>
                 <td>
                     <div *ngIf="payment.memberId">
                         <a [routerLink]="['../member', payment.memberId , 'view' ]" >{{payment.memberName}}</a>
@@ -33,6 +34,7 @@
                 </td>
                 <td>{{payment.status}}</td>
                 <td>{{payment.payDate | date:'medium'}}</td>
+                <td>{{payment.description}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

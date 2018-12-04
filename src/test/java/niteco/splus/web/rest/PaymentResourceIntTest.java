@@ -66,6 +66,9 @@ public class PaymentResourceIntTest {
     private static final String DEFAULT_INFO = "AAAAAAAAAA";
     private static final String UPDATED_INFO = "BBBBBBBBBB";
 
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
     @Autowired
     private PaymentRepository paymentRepository;
 
@@ -120,7 +123,8 @@ public class PaymentResourceIntTest {
             .amount(DEFAULT_AMOUNT)
             .status(DEFAULT_STATUS)
             .payDate(DEFAULT_PAY_DATE)
-            .info(DEFAULT_INFO);
+            .info(DEFAULT_INFO)
+            .description(DEFAULT_DESCRIPTION);
         return payment;
     }
 
@@ -150,6 +154,7 @@ public class PaymentResourceIntTest {
         assertThat(testPayment.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testPayment.getPayDate()).isEqualTo(DEFAULT_PAY_DATE);
         assertThat(testPayment.getInfo()).isEqualTo(DEFAULT_INFO);
+        assertThat(testPayment.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
 
     @Test
@@ -187,7 +192,8 @@ public class PaymentResourceIntTest {
             .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].payDate").value(hasItem(DEFAULT_PAY_DATE.toString())))
-            .andExpect(jsonPath("$.[*].info").value(hasItem(DEFAULT_INFO.toString())));
+            .andExpect(jsonPath("$.[*].info").value(hasItem(DEFAULT_INFO.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -238,7 +244,8 @@ public class PaymentResourceIntTest {
             .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.intValue()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.payDate").value(DEFAULT_PAY_DATE.toString()))
-            .andExpect(jsonPath("$.info").value(DEFAULT_INFO.toString()));
+            .andExpect(jsonPath("$.info").value(DEFAULT_INFO.toString()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
@@ -266,7 +273,8 @@ public class PaymentResourceIntTest {
             .amount(UPDATED_AMOUNT)
             .status(UPDATED_STATUS)
             .payDate(UPDATED_PAY_DATE)
-            .info(UPDATED_INFO);
+            .info(UPDATED_INFO)
+            .description(UPDATED_DESCRIPTION);
         PaymentDTO paymentDTO = paymentMapper.toDto(updatedPayment);
 
         restPaymentMockMvc.perform(put("/api/payments")
@@ -283,6 +291,7 @@ public class PaymentResourceIntTest {
         assertThat(testPayment.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testPayment.getPayDate()).isEqualTo(UPDATED_PAY_DATE);
         assertThat(testPayment.getInfo()).isEqualTo(UPDATED_INFO);
+        assertThat(testPayment.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
 
     @Test

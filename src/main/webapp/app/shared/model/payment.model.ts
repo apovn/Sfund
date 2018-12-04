@@ -13,6 +13,7 @@ export interface IPayment {
     status?: PayStatusEnum;
     payDate?: Moment;
     info?: any;
+    description?: any;
     reasons?: IReason[];
     memberId?: number;
 }
@@ -25,6 +26,7 @@ export class Payment implements IPayment {
         public status?: PayStatusEnum,
         public payDate?: Moment,
         public info?: any,
+        public description?: any,
         public reasons?: IReason[],
         public memberId?: number
     ) {}

@@ -26,6 +26,9 @@ public class PaymentDTO implements Serializable {
     @Lob
     private String info;
 
+    @Lob
+    private String description;
+
     private Set<ReasonDTO> reasons = new HashSet<>();
 
     private Long memberId;
@@ -78,6 +81,14 @@ public class PaymentDTO implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Set<ReasonDTO> getReasons() {
@@ -134,6 +145,8 @@ public class PaymentDTO implements Serializable {
             ", status='" + getStatus() + "'" +
             ", payDate='" + getPayDate() + "'" +
             ", info='" + getInfo() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", memberName='" + getMemberName() + "'" +
             ", member=" + getMemberId() +
             "}";
     }
